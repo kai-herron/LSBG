@@ -27,10 +27,10 @@ FILE = fits.open('/data/des80.b/data/burcinmp/y6_lsbg/y6/v2/y6_gold_2_0_lsb_skim
 # ===== Load the scalers and classifiers =========
 # ============================================================
 # Load scalers
-scaler_1 = joblib.load('/data/des81.a/data/kherron/LSBG/Default_Robust/scaler_v5.pkl') #1st stage  
+scaler_1 = joblib.load('/data/des81.a/data/kherron/LSBG/Y6_FINAL/v3/scaler.pkl') #1st stage  
 
 # Load classifiers
-cls_1 = joblib.load('/data/des81.a/data/kherron/LSBG/Default_Robust/classifier_v5.pkl') #1st stage
+cls_1 = joblib.load('/data/des81.a/data/kherron/LSBG/Y6_FINAL/v3/classifier.pkl') #1st stage
 
 # ==============================================================
 # ================= CREATE FEATURE MATRIX ======================
@@ -80,24 +80,24 @@ def feat_mat_around(ra_c=0.,dec_c=0.,degs=1.,full=True):
     decs_in = data_in['DEC']
     A_IMAGE_in = data_in['A_IMAGE']
     B_IMAGE_in = data_in['B_IMAGE']
-    MAG_AUTO_G_in = data_in['MAG_AUTO_G']
+    MAG_AUTO_G_in = data_in['MAG_AUTO_SFD_G']
     FLUX_RADIUS_G_in = 0.263*data_in['FLUX_RADIUS_G']
-    MU_EFF_MODEL_G_in = data_in['MU_EFF_MODEL_G']
-    MU_MAX_G_in = data_in['MU_MAX_G']
-    MU_MAX_MODEL_G_in = data_in['MU_MAX_MODEL_G']
-    MU_MEAN_MODEL_G_in = data_in['MU_MEAN_MODEL_G']
-    MAG_AUTO_R_in = data_in['MAG_AUTO_R']
+    MU_EFF_MODEL_G_in = data_in['MU_EFF_MODEL_SFD_G']
+    MU_MAX_G_in = data_in['MU_MAX_SFD_G']
+    MU_MAX_MODEL_G_in = data_in['MU_MAX_MODEL_SFD_G']
+    MU_MEAN_MODEL_G_in = data_in['MU_MEAN_MODEL_SFD_G']
+    MAG_AUTO_R_in = data_in['MAG_AUTO_SFD_R']
     FLUX_RADIUS_R_in = 0.263*data_in['FLUX_RADIUS_R']
-    MU_EFF_MODEL_R_in = data_in['MU_EFF_MODEL_R']
-    MU_MAX_R_in = data_in['MU_MAX_R']
-    MU_MAX_MODEL_R_in = data_in['MU_MAX_MODEL_R']
-    MU_MEAN_MODEL_R_in = data_in['MU_MEAN_MODEL_R']
-    MAG_AUTO_I_in = data_in['MAG_AUTO_I']
+    MU_EFF_MODEL_R_in = data_in['MU_EFF_MODEL_SFD_R']
+    MU_MAX_R_in = data_in['MU_MAX_SFD_R']
+    MU_MAX_MODEL_R_in = data_in['MU_MAX_MODEL_SFD_R']
+    MU_MEAN_MODEL_R_in = data_in['MU_MEAN_MODEL_SFD_R']
+    MAG_AUTO_I_in = data_in['MAG_AUTO_SFD_I']
     FLUX_RADIUS_I_in = 0.263*data_in['FLUX_RADIUS_I']
-    MU_EFF_MODEL_I_in = data_in['MU_EFF_MODEL_I']
-    MU_MAX_I_in = data_in['MU_MAX_I']
-    MU_MAX_MODEL_I_in = data_in['MU_MAX_MODEL_I']
-    MU_MEAN_MODEL_I_in = data_in['MU_MEAN_MODEL_I']
+    MU_EFF_MODEL_I_in = data_in['MU_EFF_MODEL_SFD_I']
+    MU_MAX_I_in = data_in['MU_MAX_SFD_I']
+    MU_MAX_MODEL_I_in = data_in['MU_MAX_MODEL_SFD_I']
+    MU_MEAN_MODEL_I_in = data_in['MU_MEAN_MODEL_SFD_I']
     
     # =========== Create extra features ============
     # Ellipticity

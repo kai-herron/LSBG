@@ -24,43 +24,33 @@ from PIL import Image
 FILE = ft.read('/data/des80.b/data/burcinmp/y6_lsbg/y6/v2/y6_gold_2_0_lsb_skim.fits')
 
 
-
-#=====Randomly Select Objects===============
-random = np.random.default_rng()
-randInd = random.choice(len(FILE['COADD_OBJECT_ID']),size=200000,replace=False)
-
-randoms_80k = FILE[randInd]
-
-
-
 #=====Make Training Matricies===============
-train = randoms_80k
-names = 'randoms_80k'
 
-mat = randoms_80k
+mat = FILE
+
 coadd_ids_in = mat['COADD_OBJECT_ID']
 ras_in = mat['RA']
 decs_in = mat['DEC']
 A_IMAGE_in = mat['A_IMAGE']
 B_IMAGE_in = mat['B_IMAGE']
-MAG_AUTO_G_in = mat['MAG_AUTO_G']
+
+MAG_AUTO_G_in = mat['MAG_AUTO_SFD_G']
 FLUX_RADIUS_G_in = 0.263*mat['FLUX_RADIUS_G']
-MU_EFF_MODEL_G_in = mat['MU_EFF_MODEL_G']
-MU_MAX_G_in = mat['MU_MAX_G']
-MU_MAX_MODEL_G_in = mat['MU_MAX_MODEL_G']
-MU_MEAN_MODEL_G_in = mat['MU_MEAN_MODEL_G']
-MAG_AUTO_R_in = mat['MAG_AUTO_R']
+MU_EFF_MODEL_G_in = mat['MU_EFF_MODEL_SFD_G']
+MU_MAX_MODEL_G_in = mat['MU_MAX_MODEL_SFD_G']
+MU_MEAN_MODEL_G_in = mat['MU_MEAN_MODEL_SFD_G']
+
+MAG_AUTO_R_in = mat['MAG_AUTO_SFD_R']
 FLUX_RADIUS_R_in = 0.263*mat['FLUX_RADIUS_R']
-MU_EFF_MODEL_R_in = mat['MU_EFF_MODEL_R']
-MU_MAX_R_in = mat['MU_MAX_R']
-MU_MAX_MODEL_R_in = mat['MU_MAX_MODEL_R']
-MU_MEAN_MODEL_R_in = mat['MU_MEAN_MODEL_R']
-MAG_AUTO_I_in = mat['MAG_AUTO_I']
+MU_EFF_MODEL_R_in = mat['MU_EFF_MODEL_SFD_R']
+MU_MAX_MODEL_R_in = mat['MU_MAX_MODEL_SFD_R']
+MU_MEAN_MODEL_R_in = mat['MU_MEAN_MODEL_SFD_R']
+
+MAG_AUTO_I_in = mat['MAG_AUTO_SFD_I']
 FLUX_RADIUS_I_in = 0.263*mat['FLUX_RADIUS_I']
-MU_EFF_MODEL_I_in = mat['MU_EFF_MODEL_I']
-MU_MAX_I_in = mat['MU_MAX_I']
-MU_MAX_MODEL_I_in = mat['MU_MAX_MODEL_I']
-MU_MEAN_MODEL_I_in = mat['MU_MEAN_MODEL_I']
+MU_EFF_MODEL_I_in = mat['MU_EFF_MODEL_SFD_I']
+MU_MAX_MODEL_I_in = mat['MU_MAX_MODEL_SFD_I']
+MU_MEAN_MODEL_I_in = mat['MU_MEAN_MODEL_SFD_I']
 
 # Ellipticity
 Ell_in = 1. - B_IMAGE_in/A_IMAGE_in
@@ -106,11 +96,10 @@ X_mat_in[:,18] = MU_MEAN_MODEL_I_in
 
 
 
-vars()['X_' + names[0] + '_lab'] = np.zeros(len_n)
-np.save("/data/des81.a/data/kherron/LSBG/trainingfiles/X_randoms_200k_feat.npy",
+
+np.save("/data/des81.a/data/kherron/LSBG/trainingfiles/training_ext/X_feat_eval.npy",
         X_mat_in)
-np.save("/data/des81.a/data/kherron/LSBG/trainingfiles/y_randoms_200k_lab.npy",
-        np.zeros(len_n))
+
 
     
     

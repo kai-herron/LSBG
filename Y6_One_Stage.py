@@ -83,54 +83,31 @@ plot_pretty()
 # 
 
 # Feature matrix
-X_feat_1st = np.load("/data/des80.b/data/burcinmp/y6_lsbg/y6/test_classifier/random_forest/v3/X_mat_v4_a.npy")
+X_feat_1 = np.load("/data/des81.a/data/kherron/LSBG/trainingfiles/training_ext/X_feat_FINAL.npy")
 
-#Uncomment below to load in feature matrix for confirmed negative images, random sample, and Burcin's training
-
-#===============================================================================================================
-#randoms = np.load("/data/des81.a/data/kherron/LSBG/trainingfiles/Randoms/X_randoms_feat.npy")
-#randoms_l = np.load("/data/des81.a/data/kherron/LSBG/trainingfiles/Randoms/y_randoms_lab.npy")
-
-#burcin = np.load("/data/des80.b/data/burcinmp/y6_lsbg/y6/test_classifier/random_forest/v3/X_mat_v4_a.npy")
-#burcin_l = np.load("/data/des80.b/data/burcinmp/y6_lsbg/y6/test_classifier/random_forest/v3/y_lab_v4_a.npy")
-
-#sel = (burcin_l == 1)
-#burcin = burcin[sel]
-#burcin_l = burcin_l[sel]
-
-#X_feat_1st = np.concatenate((burcin,randoms))
-#===============================================================================================================
 
 # Labels - 1: LSBGs, 0: artifacts
-y_label_1st = np.load("/data/des80.b/data/burcinmp/y6_lsbg/y6/test_classifier/random_forest/v3/y_lab_v4_a.npy")
+y_label_1st = np.load("/data/des81.a/data/kherron/LSBG/trainingfiles/training_ext/y_lab_FINAL.npy")
 
-
-#Uncomment below to load in labels for confirmed negative images, random sample, and Burcin's training
-
-#===============================================================================================================
-#y_label_1st = np.concatenate((burcin_l,randoms_l))
-#===============================================================================================================
 
 # Train a standard scaler on the full dataset                                                                                                                                                                                                                               
-eval_sample = np.load('/data/des81.a/data/kherron/LSBG/Default_Robust/X_eval_feat.npy')
-combo = np.concatenate((X_feat_1st, eval_sample))
-scaler_1st = StandardScaler().fit(combo)
+scaler_1st = StandardScaler().fit(X_feat_1)
 
 # Standardize                                                                                                                                                                                                                                                               
-X_feat_1st_st = scaler_1st.transform(X_feat_1st)
+X_feat_1st = scaler_1st.transform(X_feat_1)
 
 #### HERE YOU NEED TO MODIFY THE CLASSIFIER BASED ON YOUR TESTS!!!!
 # Train the classifier here ***
 RFC = RandomForestClassifier(n_estimators=100)
 
 # Fit on the full dataset
-RFC.fit(X_feat_1st_st, y_label_1st)
+RFC.fit(X_feat_1st, y_label_1st)
 
 # ### Save the trained scalers and classifiers
 # Save the scaler                                                                                                                                                                                                                                                     
-joblib.dump(scaler_1st, '/data/des81.a/data/kherron/LSBG/Default_Robust/scaler_v5.pkl')
+joblib.dump(scaler_1st, '/data/des81.a/data/kherron/LSBG/Y6_FINAL/v3/scaler.pkl')
 
 # Save the classifer                                                                                                                                                                                                                                                      
-joblib.dump(RFC, '/data/des81.a/data/kherron/LSBG/Default_Robust/classifier_v5.pkl')
+joblib.dump(RFC, '/data/des81.a/data/kherron/LSBG/Y6_FINAL/v3/classifier.pkl')
 
 

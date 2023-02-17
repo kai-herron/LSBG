@@ -10,10 +10,10 @@ ID_neg=results[3];  RA_neg = results[4]; DEC_neg = results[5]
 
 print("Writing positives/negatives to table...")
 
-pos_idlist= '/data/des81.a/data/kherron/LSBG/Default_Robust/y6_lsbg_v5'
+pos_idlist= '/data/des81.a/data/kherron/LSBG/Y6_FINAL/v3/y6_lsbg_FINAL'
 np.save(pos_idlist,ID_pos)
 
-neg_idlist= '/data/des81.a/data/kherron/LSBG/Default_Robust/y6_negative_v5'
+neg_idlist= '/data/des81.a/data/kherron/LSBG/Y6_FINAL/v3/y6_negative_FINAL'
 np.save(neg_idlist,ID_neg)
 
 #Let's see how many were classified as LSBGs
